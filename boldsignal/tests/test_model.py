@@ -1,6 +1,7 @@
 import torch
 import pytest
 from boldsignal.model.encoder import CrossModalTransformer
+from boldsignal.model.head import SubjectHead
 
 def test_encoder_output_shape():
     model = CrossModalTransformer(
@@ -27,3 +28,19 @@ def test_encoder_no_crash_with_different_batch_sizes():
         text  = torch.randn(B, 100, 768)
         out = model(video, audio, text, output_timesteps=50)
         assert out.shape == (B, 50, 384)
+
+
+def test_subject_head_output_shape():
+    head = SubjectHead(d_model=384, n_rois=360, n_subjects=4)
+    B, T = 2, 100
+    x = torch.randn(B, T, 384)
+    subject_ids = torch.tensor([0, 1])
+    out = head(x, subject_ids)
+    assert out.shape == (B, T, 360)
+
+def test_subject_head_different_subjects_differ():
+    head = SubjectHead(d_model=384, n_rois=360, n_subjects=4)
+    x = torch.randn(1, 50, 384)
+    out0 = head(x, torch.tensor([0]))
+    out1 = head(x, torch.tensor([1]))
+    assert not torch.allclose(out0, out1)
