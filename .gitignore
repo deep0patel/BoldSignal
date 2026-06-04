@@ -1,61 +1,16 @@
-# Keep only README.md and boldsignal_batch.ipynb in the repo
-
-# Plans and internal docs
-boldsignal_plan.md
-boldsignal_poc.ipynb
-
-# Content drafts (LinkedIn, HF, X thread)
-content/
-
-# LinkedIn posts folder
-2026/
-
-# Python
+.venv/
 __pycache__/
-*.py[cod]
+*.pyc
 *.pyo
-.Python
-*.egg-info/
-dist/
-build/
-
-# Jupyter checkpoints
-.ipynb_checkpoints/
-
-# Virtual environments
-.env
-.venv
-env/
-venv/
-
-# Model cache & data
-cache/
-*.bin
-*.pt
-*.pth
-*.safetensors
-*.pkl
-*.h5
-*.hdf5
 *.npy
-
-# Video / audio files
-*.mp4
-*.avi
-*.mov
-*.mkv
-*.wav
 *.nii
 *.nii.gz
-
-# OS
+data/raw/
+data/processed/
+features/cache/
+checkpoints/
+*.pt
+*.pth
 .DS_Store
-Thumbs.db
-
-# IDE
-.vscode/
-.idea/
-
-# TRIBEv2 source (local study only, CC-BY-NC-4.0)
-tribev2/
-boldsignal_batch copy.ipynb
+.env
+wandb/
