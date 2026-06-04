@@ -1,0 +1,32 @@
+title: I ran a brain encoding model on YouTube Shorts - here's what I found
+date: 2026-04-07T09:00:00Z
+content: |
+  I ran Meta's TRIBE v2 on five YouTube Shorts to see what comes out.
+
+  TRIBE v2 is a brain encoding model from Meta FAIR. It predicts fMRI activation across ~20,000 cortical voxels per 2-second timestep - trained on real humans in scanners watching naturalistic video.
+
+  Model: https://huggingface.co/facebook/tribev2
+
+  I built a scoring layer on top called BoldSignal. Four dimensions:
+
+  - Default Mode Network (PCC, mPFC, angular gyrus) - the mind-wandering network
+  - Amygdala + parahippocampal gyrus - emotional memory circuit
+  - pSTS, fusiform gyrus, rTPJ - social processing regions
+  - V1-V4, A1, insula in the first 5-15 seconds - sensory salience (hook window only)
+
+  Each gets a weighted score (30/25/25/20). Combined with a variance-based ISC proxy as a final multiplier. Output: a Brain Score from 0-100.
+
+  Scores across the five videos: 54.7, 46.5, 44.7, 35.2, 23.4.
+
+  That's a 31-point spread across five YouTube Shorts. All classified as non-narrative - no speech, no story structure, so the DMN scoring runs in suppression mode rather than synchrony mode.
+
+  The dimension weights (30/25/25/20) are my choices based on reading the literature - not validated against actual engagement outcomes. Someone with more fMRI background would likely make different calls.
+
+  Two outputs per video now: an engagement timeline showing attention and emotional activation second-by-second, and a radar breakdown of the four dimension scores. The timeline is probably more useful than the aggregate number - the shape of how signals move across the video carries more information than a single score.
+
+  GitHub: https://github.com/deep0patel/boldsignal
+  Notebook runs in one click on Colab (free T4). Curious what others find on different content types.
+
+  PS: This is purely an experiment - me figuring out what the model can do. But it raises an obvious question worth sitting with: Meta built TRIBE v2. Meta also runs the largest content distribution platforms on the planet. A model that predicts brain engagement from video at scale could, in theory, become the most powerful content ranking signal ever built - not optimising for clicks or watch time, but for predicted neural lock-in. I have no idea if that's the plan. Probably not in any near-term product sense. But the capability exists now, and that seems worth naming.
+images: []
+tags: [neuroscience, machinelearning, fmri, opensource]

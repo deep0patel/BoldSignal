@@ -1,0 +1,25 @@
+title: I ran Meta's brain encoding model on YouTube videos - here's what came out
+date: 2026-04-07T09:00:00Z
+content: |
+  I've been experimenting with TRIBE v2 - Meta FAIR's fMRI brain encoding model - to see if it could be turned into something interpretable for video content.
+
+  The model predicts how the average human brain activates, voxel by voxel, while watching a video. From those predictions I built a scoring layer that aggregates activation across four neuroscience-grounded regions into a single Brain Score (0-100).
+
+  The four dimensions:
+
+  - Sustained Attention: Default Mode Network activity - the "mind-wandering" network, which quiets during external engagement and synchronises during narrative comprehension
+  - Emotional Memory Encoding: amygdala and parahippocampal gyrus co-activation - linked in the literature to emotionally-driven episodic encoding
+  - Social Processing: pSTS, fusiform gyrus, rTPJ - circuits involved in face processing and mentalising
+  - Sensory Salience: V1-V4, A1, and insula activation in the first 5-15 seconds only
+
+  I ran it on five YouTube Shorts. Scores came out between 59 and 66 - tighter than I expected. Not sure yet if that reflects something real about the format, or if my normalisation needs work.
+
+  It also outputs a second-by-second timeline of predicted attention and emotional activation. The timeline is probably more useful than the aggregate number.
+
+  The weights and cutoffs are my own choices based on reading the literature - not validated parameters. Someone with more fMRI background would likely make different calls.
+
+  Notebook is open source. One click to run in Colab. Curious what patterns others find on different content types.
+
+  GitHub: https://github.com/deep0patel/boldsignal
+images: []
+tags: [neuroscience, machinelearning, fmri, opensource]
