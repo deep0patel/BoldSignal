@@ -34,3 +34,13 @@ def test_extract_audio_features_output_dim():
     # WavLM-base-plus outputs 768-dim embeddings
     result = np.random.randn(40, 768)  # mock: 20s at 2Hz
     assert result.shape[1] == 768
+
+
+# Task 7: Text Feature Extractor (Whisper → BGE)
+from boldsignal.features.text import align_text_to_bins
+
+def test_align_text_to_bins():
+    words = [("hello", 0.0, 0.5), ("world", 0.6, 1.0), ("test", 1.5, 2.0)]
+    bins = align_text_to_bins(words, n_bins=4, bin_duration=0.5)
+    assert len(bins) == 4
+    assert isinstance(bins[0], str)
