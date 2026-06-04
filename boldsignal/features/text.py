@@ -10,13 +10,10 @@ Usage:
 """
 import argparse
 import numpy as np
-from pathlib import Path
 
 try:
-    import torch
     from transformers import pipeline
 except (ImportError, RuntimeError):
-    torch = None
     pipeline = None
 
 try:
@@ -55,7 +52,7 @@ def align_text_to_bins(words: list, n_bins: int, bin_duration: float = BIN_DURAT
     words: list of (word, start_sec, end_sec)
     """
     bins = [""] * n_bins
-    for word, start, end in words:
+    for word, start, _ in words:
         bin_idx = int(start / bin_duration)
         if bin_idx < n_bins:
             bins[bin_idx] = (bins[bin_idx] + " " + word).strip()
